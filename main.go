@@ -5,12 +5,12 @@ import (
 	"strconv"
 )
 
-func f[T fmt.Stringer](xs []T) []string {
+func ToStringSlice[T fmt.Stringer](inputSlice []T) []string {
 
 	result := []string{}
 
-	for _, x := range xs {
-		result = append(result, x.String())
+	for _, element := range inputSlice {
+		result = append(result, element.String())
 	}
 
 	return result
@@ -26,6 +26,6 @@ func (i MyInt) String() string {
 
 func main() {
 
-	fmt.Println(f([]MyInt{1, 2, 3, 4, 5}))
+	fmt.Println(ToStringSlice([]MyInt{1, 2, 3, 4, 5}))
 
 }
