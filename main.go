@@ -4,24 +4,19 @@ import (
 	"fmt"
 )
 
-type Number interface {
-	~int | int32 | int64 | float32 | float64 | string
-}
+type Vector[T any] []T
 
-func Max[T Number](x, y T) T {
-	if x >= y {
-		return x
-	}
-	return y
-}
-
-type MyInt int
+type IntVector = Vector[int]
 
 func main() {
 
-	fmt.Println(Max(1, 4))
-	fmt.Println(Max(3.3, 5.9))
+	var v Vector[int] = []int{1, 2, 3}
+	fmt.Println(v)
 
-	fmt.Println(Max[MyInt](1, 9))
+	var v2 Vector[string] = []string{"a", "b", "c"}
+	fmt.Println(v2)
+
+	v3 := IntVector{10, 20, 30}
+	fmt.Println(v3)
 
 }
