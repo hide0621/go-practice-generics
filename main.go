@@ -2,30 +2,26 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
-func ToStringSlice[T fmt.Stringer](inputSlice []T) []string {
+type Number interface {
+	~int | int32 | int64 | float32 | float64 | string
+}
 
-	result := []string{}
-
-	for _, element := range inputSlice {
-		result = append(result, element.String())
+func Max[T Number](x, y T) T {
+	if x >= y {
+		return x
 	}
-
-	return result
+	return y
 }
 
 type MyInt int
 
-func (i MyInt) String() string {
-
-	return strconv.Itoa(int(i))
-
-}
-
 func main() {
 
-	fmt.Println(ToStringSlice([]MyInt{1, 2, 3, 4, 5}))
+	fmt.Println(Max(1, 4))
+	fmt.Println(Max(3.3, 5.9))
+
+	fmt.Println(Max[MyInt](1, 9))
 
 }
