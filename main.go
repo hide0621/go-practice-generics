@@ -2,21 +2,20 @@ package main
 
 import "fmt"
 
-type Pair[T any] struct {
-	First  T
-	Second T
-}
+type Set[T comparable] map[T]struct{}
 
-func (p Pair[T]) PrintField() {
-	fmt.Println(p.First)
-	fmt.Println(p.Second)
+func NewSet[T comparable](xs ...T) Set[T] {
+
+	s := make(Set[T])
+	for _, v := range xs {
+		s[v] = struct{}{}
+	}
+	return s
 }
 
 func main() {
 
-	intResult := Pair[int]{10, 20}
-	intResult.PrintField()
+	a := NewSet(1, 2, 3)
+	fmt.Println(a)
 
-	intString := Pair[string]{"Hello", "World"}
-	intString.PrintField()
 }
